@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "89f2d784-fb1f-4e93-b527-f9d68e6924bb",
+		"name": "Exam",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27575944",
+		"_collection_link": "https://www.postman.com/grey-resonance-904828/workspace/udevs-tests/collection/27575944-89f2d784-fb1f-4e93-b527-f9d68e6924bb?action=share&source=collection_link&creator=27575944"
+	},
+	"item": [
+		{
+			"name": "registration",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.spec.uzd.udevs.io/v1/categories?lang=ru",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spec",
+						"uzd",
+						"udevs",
+						"io"
+					],
+					"path": [
+						"v1",
+						"categories"
+					],
+					"query": [
+						{
+							"key": "lang",
+							"value": "ru"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send_code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.spec.uzd.udevs.io/v1/customer/send-code?phone=%2B998975825555",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spec",
+						"uzd",
+						"udevs",
+						"io"
+					],
+					"path": [
+						"v1",
+						"customer",
+						"send-code"
+					],
+					"query": [
+						{
+							"key": "phone",
+							"value": "%2B998975825555"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_session",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2OTk1MDgxNjgsImlzcyI6InVzZXIiLCJwaWQiOjE1NjY1Nywicm9sZSI6ImN1c3RvbWVyIiwic3ViIjoiYWI0YTlhYzMtNzYzMS00NjZkLThjNWItN2ZiYmM2ODNiZDE2In0.WNKtg-RyCBP8ClV0ycYBHL0PITdqkWtD9yYo4rSVOo0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"session_id\": \r\n\"654c70b9716925ee9c555f74,654c70b9716925ee9c555f74,654c70d0716925ee9c556078,654c70d0716925ee9c556078,654c70e4716925ee9c55612f\"}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.spec.uzd.udevs.io/v1/session",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spec",
+						"uzd",
+						"udevs",
+						"io"
+					],
+					"path": [
+						"v1",
+						"session"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check_code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.test('Code should be integer', function () {\r",
+							"    pm.code.be(integer)\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \"code\": \"700500\",\r\n    \"phone\": \"+998975825555\",\r\n    \"platform_name\": \"Windows x64 | Chrome 119.0\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.spec.uzd.udevs.io/v1/customer/check-code",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spec",
+						"uzd",
+						"udevs",
+						"io"
+					],
+					"path": [
+						"v1",
+						"customer",
+						"check-code"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url2",
+			"value": "https://httpbin.org",
+			"type": "string"
+		}
+	]
+}
